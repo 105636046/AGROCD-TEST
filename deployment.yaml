@@ -5,7 +5,7 @@ metadata:
   name: express-api
   namespace: nodejs
 spec:
-  replicas: 4
+  replicas: 5
   selector:
     matchLabels:
       app: express-api
