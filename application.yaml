@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nodejs-sample
+  namespace: nodejs
+spec:
+  destination:
+    namespace: nodejs
+    server: https://aks-dns-d404afb1.hcp.southindia.azmk8s.io:443
+  source: 
+    repoURL: https://github.com/105636046/agrocd-test.git
+    targetRevison: HEAD
+    path: deployment
+  project: default
+  syncPolicy:
+    syncOptions: 
+    - createNamespace: true
+    automated: 
+      selfHeal: true
+      prune: true               
