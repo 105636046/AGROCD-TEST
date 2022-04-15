@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: express-api
-  namespace: express-nodejs
+  namespace: nodejs
 spec:
   replicas: 2
   selector:
@@ -30,7 +30,7 @@ kind: NetworkPolicy
 apiVersion: networking.k8s.io/v1
 metadata:
   name: allow-express-nodejs-traffic
-  namespace: express-nodejs
+  namespace: nodejs
 spec:
   podSelector:
     matchLabels:
@@ -48,7 +48,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: express-nodejs-role
-  namespace: express-nodejs
+  namespace: nodejs
 rules:
   - apiGroups: ["", "apps"] # "" indicates the core API group
     resources: ["*"]
@@ -58,11 +58,11 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: express-nodejs-role-binding
-  namespace: express-nodejs
+  namespace: nodejs
 subjects:
 - kind: ServiceAccount
   name: express-nodejs-service-account
-  namespace: express-nodejs
+  namespace: nodejs
 roleRef:
   kind: Role
   name: express-nodejs-role
@@ -85,6 +85,6 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: express-nodejs-service-account
-  namespace: express-nodejs
+  namespace: nodejs
 ---  
     
